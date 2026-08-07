@@ -661,7 +661,7 @@ namespace vSharpStudio.vm.ViewModels
                 if (prev != null && pg.DataTypeEnum != prev.DataTypeEnum)
                 {
                     var vf = Common.CreateValidationFailure(nameof(pg.DataTypeEnum),
-                        $"Comparison with previous {ver} version. Data type was changed from '{Enum.GetName(typeof(EnumDataType), prev.DataTypeEnum)}' to '{Enum.GetName(typeof(EnumDataType), pg.DataTypeEnum)}'");
+                        $"Comparison with previous {ver} version. Data type was changed from '{Enum.GetName(typeof(EnumDataType), prev.DataTypeEnum)}' to '{Enum.GetName(typeof(EnumDataType), pg.DataTypeEnum)}'", Severity.Warning);
                     cntx.AddFailure(vf);
                 }
                 prev = pg.PrevStableVersion();
@@ -669,7 +669,7 @@ namespace vSharpStudio.vm.ViewModels
                 if (prev != null && pg.DataTypeEnum != prev.DataTypeEnum)
                 {
                     var vf = Common.CreateValidationFailure(nameof(pg.DataTypeEnum),
-                        $"Comparison with previous {ver} version. Data type was changed from '{Enum.GetName(typeof(EnumDataType), prev.DataTypeEnum)}' to '{Enum.GetName(typeof(EnumDataType), pg.DataTypeEnum)}'");
+                        $"Comparison with previous {ver} version. Data type was changed from '{Enum.GetName(typeof(EnumDataType), prev.DataTypeEnum)}' to '{Enum.GetName(typeof(EnumDataType), pg.DataTypeEnum)}'", Severity.Warning);
                     cntx.AddFailure(vf);
                 }
             });
@@ -682,12 +682,12 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     if (pg.Length > 0 && prev.Length > 0 && pg.Length < prev.Length)
                     {
-                        var vf = Common.CreateValidationFailure(nameof(pg.Length), $"Comparison with previous {ver} version. Length was reduced from '{prev.Length}' to '{pg.Length}'");
+                        var vf = Common.CreateValidationFailure(nameof(pg.Length), $"Comparison with previous {ver} version. Length was reduced from '{prev.Length}' to '{pg.Length}'", Severity.Warning);
                         cntx.AddFailure(vf);
                     }
                     else if (pg.Length > 0 && prev.Length == 0)
                     {
-                        var vf = Common.CreateValidationFailure(nameof(pg.Length), $"Comparison with previous {ver} version. Length was reduced from 'MAX' to '{pg.Length}'");
+                        var vf = Common.CreateValidationFailure(nameof(pg.Length), $"Comparison with previous {ver} version. Length was reduced from 'MAX' to '{pg.Length}'", Severity.Warning);
                         cntx.AddFailure(vf);
                     }
                 }
@@ -697,12 +697,12 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     if (pg.Length > 0 && prev.Length > 0 && pg.Length < prev.Length)
                     {
-                        var vf = Common.CreateValidationFailure(nameof(pg.Length), $"Comparison with previous {ver} version. Length was reduced from '{prev.Length}' to '{pg.Length}'");
+                        var vf = Common.CreateValidationFailure(nameof(pg.Length), $"Comparison with previous {ver} version. Length was reduced from '{prev.Length}' to '{pg.Length}'", Severity.Warning);
                         cntx.AddFailure(vf);
                     }
                     else if (pg.Length > 0 && prev.Length == 0)
                     {
-                        var vf = Common.CreateValidationFailure(nameof(pg.Length), $"Comparison with previous {ver} version. Length was reduced from 'MAX' to '{pg.Length}'");
+                        var vf = Common.CreateValidationFailure(nameof(pg.Length), $"Comparison with previous {ver} version. Length was reduced from 'MAX' to '{pg.Length}'", Severity.Warning);
                         cntx.AddFailure(vf);
                         return;
                     }
@@ -719,7 +719,7 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         if (pg.Accuracy < prev.Accuracy)
                         {
-                            var vf = Common.CreateValidationFailure(nameof(pg.Accuracy), $"Comparison with previous {ver} version. Accuracy was reduced from '{prev.Accuracy}' to '{pg.Accuracy}'");
+                            var vf = Common.CreateValidationFailure(nameof(pg.Accuracy), $"Comparison with previous {ver} version. Accuracy was reduced from '{prev.Accuracy}' to '{pg.Accuracy}'", Severity.Warning);
                             cntx.AddFailure(vf);
                         }
                     }
@@ -732,7 +732,7 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         if (pg.Accuracy < prev.Accuracy)
                         {
-                            var vf = Common.CreateValidationFailure(nameof(pg.Accuracy), $"Comparison with previous {ver} version. Accuracy was reduced from '{prev.Accuracy}' to '{pg.Accuracy}'");
+                            var vf = Common.CreateValidationFailure(nameof(pg.Accuracy), $"Comparison with previous {ver} version. Accuracy was reduced from '{prev.Accuracy}' to '{pg.Accuracy}'", Severity.Warning);
                             cntx.AddFailure(vf);
                         }
                     }

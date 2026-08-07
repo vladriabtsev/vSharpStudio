@@ -10,7 +10,7 @@ namespace vSharpStudio.common
     {
         public static ValidationFailure CreateValidationFailure(string propertyName, string errorMessage, Severity severity = Severity.Error)
         {
-            Debug.Assert(!VmBindable.IsDebugStopOnCreateValidationFailure || false);
+            Debug.Assert(!VmBindable.IsDebugStopOnCreateValidationFailure || severity != Severity.Error || false);
             return new ValidationFailure(propertyName, errorMessage) { Severity = severity };
         }
     }
