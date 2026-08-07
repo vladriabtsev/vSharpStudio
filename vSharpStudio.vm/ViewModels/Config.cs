@@ -37,12 +37,16 @@ namespace vSharpStudio.vm.ViewModels
         }
         public Config(Proto.Config.proto_config pconfig) : this((ITreeConfigNode?)null)
         {
+            VmBindable.IsValidateAll = false;
             Config.ConvertToVM(pconfig, this);
+            VmBindable.IsValidateAll = true;
         }
         public Config(string configJson) : this((ITreeConfigNode?)null)
         {
             var pconfig = CommonUtils.ParseJson<Proto.Config.proto_config>(configJson, true);
+            VmBindable.IsValidateAll = false;
             Config.ConvertToVM(pconfig, this);
+            VmBindable.IsValidateAll = true;
         }
         public static Config Clone(ConfigShortHistory parent, IConfig from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {

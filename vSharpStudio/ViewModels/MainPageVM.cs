@@ -270,6 +270,7 @@ namespace vSharpStudio.ViewModels
                     this.Config = config;
                     IEditableObjectExt.IsTraceChanges = true;
                 }
+                VmBindable.IsValidateAll = true;
                 return config;
             }
             catch (Exception ex)
@@ -1119,7 +1120,9 @@ namespace vSharpStudio.ViewModels
         {
             var model = new Config(false);
             var pconfig_history = CommonUtils.ParseJson<Proto.Config.proto_config_short_history>(json, true);
+            VmBindable.IsValidateAll = false;
             Config.ConvertToVM(pconfig_history.CurrentConfig, model);
+            VmBindable.IsValidateAll = true;
             // https://github.com/GregFinzer/Compare-Net-Objects
             KellermanSoftware.CompareNetObjects.CompareLogic compareLogic = new KellermanSoftware.CompareNetObjects.CompareLogic();
             compareLogic.Config.IgnoreProperty<Config>(x => x.DicNodes);
@@ -1954,7 +1957,9 @@ namespace vSharpStudio.ViewModels
                       {
                           //this.Save();
                           var proto = Config.ConvertToProto(this.Config);
+                          VmBindable.IsValidateAll = false;
                           this.Config.PrevCurrentConfig = Config.ConvertToVM(proto, new Config(false));
+                          VmBindable.IsValidateAll = true;
                           this.InitConfig((Config)this.Config.PrevCurrentConfig);
                           // unit test
                           if (tst != null && tst.IsThrowExceptionOnConfigUpdated)
@@ -2093,7 +2098,9 @@ namespace vSharpStudio.ViewModels
             var proto = Config.ConvertToProto(this.Config);
             this.pconfig_history.CurrentConfig = proto;
             this.pconfig_history.PrevStableConfig = this.pconfig_history.CurrentConfig.Clone();
+            VmBindable.IsValidateAll = false;
             this.Config.PrevStableConfig = Config.ConvertToVM(proto, new Config(false));
+            VmBindable.IsValidateAll = true;
             this.InitConfig((Config)this.Config.PrevStableConfig);
             this.Config.PrevCurrentConfig = Config.ConvertToVM(proto, new Config(false));
             this.InitConfig((Config)this.Config.PrevCurrentConfig);

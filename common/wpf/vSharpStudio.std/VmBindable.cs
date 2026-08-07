@@ -47,7 +47,8 @@ namespace ViewModelBase
         /// </summary>
         //public static bool IsModifyIsChangedExplicitly = false;
         public static bool isUnitTests;
-        public static bool IsNotValidateAll;
+        // true only already loaded or created empty
+        public static bool IsValidateAll = false;
         public bool IsNotValidate;
         public static bool IsDebugStopOnCreateValidationFailure;
         //public static ushort MaxSortingWeightShift = 4;

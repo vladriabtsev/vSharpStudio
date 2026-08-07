@@ -352,7 +352,7 @@ namespace vSharpStudio.vm.ViewModels
             var res = new List<IProperty>();
             var model = this.Cfg.Model;
             this.GetSpecialProperties(res, isOptimistic);
-            VmBindable.IsNotValidateAll = true;
+            //VmBindable.IsValidateAll = false;
             foreach (var t in this.ListConstants)
             {
                 if (t.IsIncluded(guidAppPrjGen))
@@ -365,7 +365,7 @@ namespace vSharpStudio.vm.ViewModels
                     res.Add(p);
                 }
             }
-            VmBindable.IsNotValidateAll = false;
+            //VmBindable.IsValidateAll = true;
             return res;
         }
 #if DEBUG
@@ -374,7 +374,7 @@ namespace vSharpStudio.vm.ViewModels
             var res = new List<IProperty>();
             var model = this.Cfg.Model;
             this.GetSpecialProperties(res, true);
-            VmBindable.IsNotValidateAll = true;
+            //VmBindable.IsValidateAll = false;
             foreach (var t in this.ListConstants)
             {
                 var p = new Property(this, t.Guid, t.Name, false) { DataType = t.DataType, IsCsNullable = true, IsNullable = true };
@@ -383,7 +383,7 @@ namespace vSharpStudio.vm.ViewModels
                 p.ShortId = t.ShortId;
                 res.Add(p);
             }
-            VmBindable.IsNotValidateAll = false;
+            //VmBindable.IsValidateAll = true;
             return res;
         }
 #endif

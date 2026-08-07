@@ -228,12 +228,10 @@ namespace ViewModelBase
         protected bool ValidateProperty([System.Runtime.CompilerServices.CallerMemberName] string? propertyName = null)
         {
             Debug.Assert(propertyName != null);
+            if (!IsValidateAll)
+                return true;
             if (IsNotValidate)
                 return true;
-#if DEBUG
-            if (IsNotValidateAll)
-                return true;
-#endif
             var res = this._validator.Validate((T)this);
             bool found = false;
             foreach (var t in res.Errors)
