@@ -895,7 +895,6 @@ namespace vSharpStudio.vm.ViewModels
                     this.VisibilityLength = Visibility.Collapsed;
                     this.VisibilityObjectName = Visibility.Collapsed;
                     this.VisibilityIsPositive = Visibility.Collapsed;
-                    this.VisibilityNullable = Visibility.Visible;
                     this._Length = 0;
                     this._Accuracy = 0;
                     this._IsPositive = false;
@@ -911,7 +910,6 @@ namespace vSharpStudio.vm.ViewModels
                     this.VisibilityLength = Visibility.Collapsed;
                     this.VisibilityObjectName = Visibility.Collapsed;
                     this.VisibilityIsPositive = Visibility.Collapsed;
-                    this.VisibilityNullable = Visibility.Visible;
                     this._Length = 0;
                     this._Accuracy = 0;
                     this._IsPositive = false;
@@ -922,7 +920,6 @@ namespace vSharpStudio.vm.ViewModels
                     this.VisibilityAccuracy = Visibility.Collapsed;
                     this.VisibilityLength = Visibility.Collapsed;
                     this.VisibilityObjectName = Visibility.Visible;
-                    this.VisibilityNullable = Visibility.Collapsed;
                     this._IsNullable = true;
                     this._Length = 0;
                     this._Accuracy = 0;
@@ -937,7 +934,6 @@ namespace vSharpStudio.vm.ViewModels
                     this.VisibilityLength = Visibility.Collapsed;
                     this.VisibilityObjectName = Visibility.Collapsed;
                     this.VisibilityIsPositive = Visibility.Collapsed;
-                    this.VisibilityNullable = Visibility.Collapsed;
                     this._IsNullable = true;
                     this._Length = 0;
                     this._Accuracy = 0;
@@ -954,7 +950,6 @@ namespace vSharpStudio.vm.ViewModels
                     this.VisibilityAccuracy = Visibility.Collapsed;
                     this.VisibilityLength = Visibility.Collapsed;
                     this.VisibilityObjectName = Visibility.Visible;
-                    this.VisibilityNullable = Visibility.Visible;
                     this._Length = 0;
                     this._Accuracy = 0;
                     this._IsPositive = false;
@@ -965,7 +960,6 @@ namespace vSharpStudio.vm.ViewModels
                     this.VisibilityIsPositive = Visibility.Visible;
                     this.VisibilityLength = Visibility.Visible;
                     this.VisibilityObjectName = Visibility.Collapsed;
-                    this.VisibilityNullable = Visibility.Visible;
                     this._Length = 6;
                     this._Accuracy = 0;
                     this._IsPositive = false;
@@ -982,7 +976,6 @@ namespace vSharpStudio.vm.ViewModels
                     this.VisibilityAccuracy = Visibility.Visible;
                     this.VisibilityLength = Visibility.Visible;
                     this.VisibilityObjectName = Visibility.Collapsed;
-                    this.VisibilityNullable = Visibility.Visible;
                     this._Length = 6;
                     this._Accuracy = 0;
                     this._IsPositive = false;
@@ -993,7 +986,6 @@ namespace vSharpStudio.vm.ViewModels
                     this.VisibilityAccuracy = Visibility.Collapsed;
                     this.VisibilityLength = Visibility.Visible;
                     this.VisibilityObjectName = Visibility.Collapsed;
-                    this.VisibilityNullable = Visibility.Visible;
                     this._Length = 25;
                     this._Accuracy = 0;
                     this._IsPositive = false;
@@ -1003,7 +995,6 @@ namespace vSharpStudio.vm.ViewModels
                     this.VisibilityAccuracy = Visibility.Collapsed;
                     this.VisibilityLength = Visibility.Collapsed;
                     this.VisibilityObjectName = Visibility.Collapsed;
-                    this.VisibilityNullable = Visibility.Visible;
                     this._Length = 0;
                     this._Accuracy = 0;
                     this._IsPositive = false;
@@ -1066,20 +1057,6 @@ namespace vSharpStudio.vm.ViewModels
         //    MaxValueCalc();
         //    MinValueCalc();
         //}
-        [Browsable(false)]
-        public Visibility VisibilityNullable
-        {
-            get
-            {
-                return this._VisibilityNullable;
-            }
-
-            set
-            {
-                SetProperty(ref this._VisibilityNullable, value);
-            }
-        }
-        private Visibility _VisibilityNullable = Visibility.Collapsed;
         [Browsable(false)]
         public Visibility VisibilityLength
         {

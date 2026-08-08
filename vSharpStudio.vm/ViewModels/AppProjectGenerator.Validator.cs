@@ -5,6 +5,7 @@ using System.IO;
 using System.Text;
 using FluentValidation;
 using FluentValidation.Results;
+using ViewModelBase;
 using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
@@ -175,7 +176,7 @@ namespace vSharpStudio.vm.ViewModels
                 switch (t.Level)
                 {
                     case ValidationPluginMessage.EnumValidationMessage.Error:
-                        Debug.Assert(false);
+                        Debug.Assert(!VmBindable.IsDebugStopOnCreateValidationFailure || false);
                         r.Severity = Severity.Error;
                         break;
                     case ValidationPluginMessage.EnumValidationMessage.Warning:

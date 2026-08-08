@@ -44,7 +44,7 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <TextBlock Text="Document for Mapping is not selected" FontWeight="Bold" Foreground="Red" Visibility="{Binding VisibilityTextRegNotSelected}"/>
+                        <TextBlock Text="Register for Mapping is not selected" FontWeight="Bold" Foreground="Red" Visibility="{Binding VisibilityTextRegNotSelected}"/>
                         <TextBlock Text="{Binding TextRegSelected}" FontWeight="Bold" Visibility="{Binding VisibilityTextRegSelected}"/>
                         <StackPanel Grid.Row="2" Visibility="{Binding VisibilityTextRegSelected}">
                             <CheckBox Grid.Row="1" IsChecked="{Binding RegisterDocToReg.IsManualPostCode}" Content="Use manually written code for POST and UNPOST data for document"/>
