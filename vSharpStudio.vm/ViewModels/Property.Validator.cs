@@ -272,9 +272,14 @@ namespace vSharpStudio.vm.ViewModels
                         Debug.Assert(p.Parent.Parent != null);
                         if (p.Parent.Parent is IRegister)
                             return;
-                        var vf = Common.CreateValidationFailure(nameof(p.IsNullable),
-                            $"Reference property to complex type expected to be nullable. For example, when object is created.");
-                        cntx.AddFailure(vf);
+                        if (p.Parent.Parent.Parent is IRegister)
+                            return;
+                        if (!p.IsNullable)
+                        {
+                            var vf = Common.CreateValidationFailure(nameof(p.IsNullable),
+                                $"Property '{p.Name}' is reference to complex type. Expected to be nullable. For example, when new object is created.");
+                            cntx.AddFailure(vf);
+                        }
                         break;
                     default:
                         break;
