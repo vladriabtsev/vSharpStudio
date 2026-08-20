@@ -26,6 +26,11 @@ namespace ApplicationLogging
     // https://github.com/dotnet/corefx/blob/master/src/System.Diagnostics.DiagnosticSource/src/DiagnosticSourceUsersGuide.md
     public static class AppLogger
     {
+        public enum EnumLogLib { Serilog, NLog }
+        /// <summary>
+        /// Log library
+        /// </summary>
+        public static EnumLogLib LogLib { get; set; } = EnumLogLib.Serilog;
         /// <summary>
         /// Use stack deepness for messages
         /// </summary>
@@ -72,17 +77,17 @@ namespace ApplicationLogging
                 if (_LoggerFactory == null)
                 {
                     string call_from = "";
-                    if (UseStackIndent)
+                    if (AppLogger.UseStackIndent)
                     {
                         var lst = Environment.StackTrace.Split(Environment.NewLine);
                         call_from = lst[3];
                         int n = lst.Length - 1;
-                        if (IndentShift == -1)
-                            IndentShift = n;
+                        if (AppLogger.IndentShift == -1)
+                            AppLogger.IndentShift = n;
                     }
                     Serilog.Debugging.SelfLog.Enable(msg => Debug.WriteLine(msg));
                     var logCfg = new Serilog.LoggerConfiguration();
-                    switch (LogLevel)
+                    switch (AppLogger.LogLevel)
                     {
                         case LogLevel.Trace:
                             logCfg.MinimumLevel.Verbose();
@@ -105,11 +110,11 @@ namespace ApplicationLogging
                     }
                     //if (category != null)
                     //    logCfg.Filter.ByIncludingOnly(Matching.FromSource(category));
-                    if (LogLevel != LogLevel.None)
+                    if (AppLogger.LogLevel != LogLevel.None)
                     {
-                        if (LogFilePath?.Length > 0)
+                        if (AppLogger.LogFilePath?.Length > 0)
                         {
-                            logCfg.WriteTo.Async(a => a.File(LogFilePath,
+                            logCfg.WriteTo.Async(a => a.File(AppLogger.LogFilePath,
                             retainedFileTimeLimit: TimeSpan.FromDays(3),
                             //retainedFileCountLimit: 5,
                             rollingInterval: Serilog.RollingInterval.Day,
@@ -117,11 +122,11 @@ namespace ApplicationLogging
                             ));
                         }
                     }
-                    if (UseDebug)
+                    if (AppLogger.UseDebug)
                     {
-                        if (LogLevelDebug == null)
-                            LogLevelDebug = LogLevel;
-                        switch (LogLevelDebug)
+                        if (AppLogger.LogLevelDebug == null)
+                            AppLogger.LogLevelDebug = LogLevel;
+                        switch (AppLogger.LogLevelDebug)
                         {
                             case LogLevel.Trace:
                                 logCfg.WriteTo.Debug().MinimumLevel.Verbose();
@@ -143,11 +148,11 @@ namespace ApplicationLogging
                                 break;
                         }
                     }
-                    if (UseConsole)
+                    if (AppLogger.UseConsole)
                     {
-                        if (LogLevelConsole == null)
-                            LogLevelConsole = LogLevel;
-                        switch (LogLevelConsole)
+                        if (AppLogger.LogLevelConsole == null)
+                            AppLogger.LogLevelConsole = LogLevel;
+                        switch (AppLogger.LogLevelConsole)
                         {
                             case LogLevel.Trace:
                                 logCfg.WriteTo.Console().MinimumLevel.Verbose();
@@ -170,26 +175,26 @@ namespace ApplicationLogging
                         }
                     }
                     Serilog.Log.Logger = logCfg.CreateLogger();
-                    if (LogLevel != LogLevel.None || UseDebug || UseConsole)
+                    if (AppLogger.LogLevel != LogLevel.None || AppLogger.UseDebug || UseConsole)
                     {
                         _LoggerFactory = Microsoft.Extensions.Logging.LoggerFactory.Create(builder => builder
-                            .SetMinimumLevel(LogLevel)
+                            .SetMinimumLevel(AppLogger.LogLevel)
                             .AddSerilog());
                     }
                     StringBuilder log = new StringBuilder();
-                    if (!string.IsNullOrEmpty(LogFilePath))
+                    if (!string.IsNullOrEmpty(AppLogger.LogFilePath))
                     {
                         log.Append("LogFilePath: '");
-                        log.Append(LogFilePath);
+                        log.Append(AppLogger.LogFilePath);
                         log.Append("'");
                         log.Append(", LogLevel: '");
-                        log.Append(LogLevel);
+                        log.Append(AppLogger.LogLevel);
                         log.Append("'");
                     }
-                    if (UseDebug)
+                    if (AppLogger.UseDebug)
                     {
                         log.Append(", LogLevelDebug: '");
-                        log.Append(LogLevelDebug);
+                        log.Append(AppLogger.LogLevelDebug);
                         log.Append("'");
                     }
                     else
@@ -199,7 +204,7 @@ namespace ApplicationLogging
                     if (UseConsole)
                     {
                         log.Append(", LogLevelConsole: '");
-                        log.Append(LogLevelConsole);
+                        log.Append(AppLogger.LogLevelConsole);
                         log.Append("'");
                     }
                     else

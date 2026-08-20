@@ -1099,6 +1099,9 @@ namespace vSharpStudio.vm.ViewModels
                         case EnumSpecialPropertyType.REF_DETAIL_TO_PARENT_DOCUMENT:
                             node.nameShortIdPrefix = "p";
                             break;
+                        case EnumSpecialPropertyType.REF_DETAIL_TO_PARENT_DETAIL:
+                            node.nameShortIdPrefix = "p";
+                            break;
                         default:
                             Debug.Assert(false);
                             break;

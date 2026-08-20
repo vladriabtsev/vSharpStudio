@@ -1747,7 +1747,7 @@ namespace vSharpStudio.vm.ViewModels
                     Debug.Assert(toNode is Detail);
                     Debug.Assert(isNullable != null);
                     res = (Property)this.GetPropertyRef(toNode, rec.Guid, IProperty.SpecialRefParentName + node.Cfg.Model.PKeyName, rec.Position, isNullable.Value);
-                    res.DataType.ObjectRef0.ForeignObjectGuid = node.Guid;
+                    res.DataType.ObjectRef0.ForeignObjectGuid = toNode.Guid;
                     res.DataType.IsNullable = isNullable.Value;
                     res.IsComplexRefId = true;
                     break;
