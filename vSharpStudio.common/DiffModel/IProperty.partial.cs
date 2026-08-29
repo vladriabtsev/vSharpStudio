@@ -107,6 +107,9 @@ namespace vSharpStudio.common
         static string SpecialPropertyNameRefTimeline { get; } = "RefTimeline";
         static string SpecialPropertyHistoryDataTimeUtc { get; } = "DataTimeUtc";
         static uint PositionReservation { get; } = 10;
+#if DEBUG
+        string ToDebugInfo();
+#endif
     }
     public interface IPropertyRangeValuesRequirements
     {

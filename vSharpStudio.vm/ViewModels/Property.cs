@@ -32,9 +32,11 @@ namespace vSharpStudio.vm.ViewModels
         public override string NameShortId { get { return $"{nameShortIdPrefix}{this.ShortId}"; } }
         partial void OnDebugStringExtend(StringBuilder sb)
         {
-            sb.Append(" Complex:");
-            Debug.Assert(this.ParentProperty != null);
-            sb.Append(this.ParentProperty.Name);
+            if (this.ParentProperty != null)
+            {
+                sb.Append(" Complex:");
+                sb.Append(this.ParentProperty.Name);
+            }
             sb.Append(" Type:");
             sb.Append(DataType.GetTypeDesc(this.DataType));
             sb.Append(" Tag:");
