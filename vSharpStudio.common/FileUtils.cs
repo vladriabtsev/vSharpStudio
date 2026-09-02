@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 using Polly;
@@ -7,6 +9,9 @@ namespace vSharpStudio.common
 {
     public static class FileUtils
     {
+#if DEBUG
+        private static HashSet<string> hashSet = new();
+#endif
         public static Policy RetryPolicy = Policy
             .Handle<IOException>()
             .WaitAndRetry(new[]
@@ -98,6 +103,10 @@ namespace vSharpStudio.common
             }
             if (!isRewrite)
                 return;
+//            Debug.Assert(!hashSet.Contains(outFile));
+//#if DEBUG
+//            hashSet.Add(outFile);
+//#endif
             FileUtils.RetryPolicy.Execute(() =>
             {
                 File.WriteAllBytes(outFile, bytes);
@@ -133,6 +142,10 @@ namespace vSharpStudio.common
             }
             if (!isRewrite)
                 return;
+//            Debug.Assert(!hashSet.Contains(outFile));
+//#if DEBUG
+//            hashSet.Add(outFile);
+//#endif
             FileUtils.RetryPolicy.Execute(() =>
             {
                 File.WriteAllText(outFile, contents, encoding);
