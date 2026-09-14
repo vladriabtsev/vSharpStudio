@@ -37,6 +37,9 @@ namespace vSharpStudio.ViewModels
     public class MainPageVM : VmValidatableWithSeverity<MainPageVM, MainPageVMValidator>, IPartImportsSatisfiedNotification
     {
         private readonly ILogger? _logger = AppLogger.CreateLogger(nameof(MainPageVM));
+#if DEBUG
+        public Func<string /*generator GUID*/, bool /*is skip*/>? IsSkipGenerationFunc;
+#endif
         public static bool NotSaveUserSettings = false;
         public static MainPageVM Create(string? pluginsFolderPath = null, string? configFile = null, bool isCreateNewEmptyConfig = false)
         {
@@ -1640,6 +1643,15 @@ namespace vSharpStudio.ViewModels
                             continue;
                         if (this.isExcludeCodeGeneration && gd.tpg.PluginDbGenerator == null)
                             continue;
+                        if (gd.tg.Generator == null)
+                            continue;
+#if DEBUG
+                        if (this.IsSkipGenerationFunc != null)
+                        {
+                            if (this.IsSkipGenerationFunc(gd.tg.Generator.Guid.ToString()))
+                                continue;
+                        }
+#endif
                         GeneratorApply(gd, diffConfig, step, nGen, isOnlySqlTextUpdate, isDeleteDb, dicAppSettingsSb, hashSetConnStr);
 #if PARALLEL
                     });

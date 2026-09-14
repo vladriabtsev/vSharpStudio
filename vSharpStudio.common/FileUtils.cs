@@ -25,6 +25,11 @@ namespace vSharpStudio.common
                 //{
                 //}
             });
+        public static void DeleteDirectoty(string path)
+        {
+            if (Directory.Exists(path))
+                Directory.Delete(path, true);
+        }
         public static void WriteToFileIfNotExist(string code, string path, string fileRelativePath, string fileName)
         {
             string outFolder = Path.Combine(path, fileRelativePath);
