@@ -201,7 +201,7 @@ namespace ApplicationLogging
                     {
                         log.Append(", LogDebug: 'false'");
                     }
-                    if (UseConsole)
+                    if (AppLogger.UseConsole)
                     {
                         log.Append(", LogLevelConsole: '");
                         log.Append(AppLogger.LogLevelConsole);
