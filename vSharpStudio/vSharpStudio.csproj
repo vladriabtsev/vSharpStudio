@@ -54,9 +54,9 @@
     <ProjectReference Include="..\vSharpStudio.vm\vSharpStudio.vm.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="10.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="10.0.14" />
-    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="10.0.14" />
+    <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="11.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="11.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="11.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="18.12.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
